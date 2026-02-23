@@ -42,7 +42,7 @@ RUN conda update conda && \
     conda init
 SHELL ["/bin/bash", "-c"]
 RUN echo "cd /root" >> /root/.bashrc
-# image does not include metaworld, maniskill, myosuite
+# image does not include maniskill, myosuite
 # these can be installed separately; see environment.yaml for details
 
 # success!

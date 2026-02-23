@@ -19,7 +19,16 @@ class Timeout(gym.Wrapper):
 		return self.env.reset(**kwargs)
 
 	def step(self, action):
-		obs, reward, done, info = self.env.step(action)
+		result = self.env.step(action)
+		if isinstance(result, tuple) and len(result) == 5:
+			obs, reward, terminated, truncated, info = result
+			done = terminated or truncated
+		else:
+			obs, reward, done, info = result
 		self._t += 1
-		done = done or self._t >= self.max_episode_steps
+		timed_out = self._t >= self.max_episode_steps
+		done = done or timed_out
+		if isinstance(result, tuple) and len(result) == 5:
+			truncated = truncated or timed_out
+			return obs, reward, terminated, truncated, info
 		return obs, reward, done, info

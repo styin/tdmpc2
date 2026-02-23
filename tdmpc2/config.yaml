@@ -64,11 +64,17 @@ dropout: 0.01
 simnorm_dim: 8
 
 # logging
-wandb_project: ???
-wandb_entity: ???
+wandb_project: mrl-tdmpc2
+wandb_entity: sebastian-ytc-hong-kong-university-of-science-and-technology
 wandb_silent: false
 enable_wandb: true
 save_csv: true
+
+# domain randomization (Meta-World)
+domain_rand: false
+obj_mass_range: [0.5, 1.5]
+obj_friction_range: [0.5, 1.5]
+obj_size_range: [0.015, 0.03]
 
 # misc
 compile: true
